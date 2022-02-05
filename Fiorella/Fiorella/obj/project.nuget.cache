@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+8oTE5FvQhuXrNzsYJMg8sbZN4ayTk52MeGlt68L1TmoIErtTCVL41CUbKpKoahjZkAeTGQuP8Pcfq4QYhSpqQ==",
+  "success": true,
+  "projectFilePath": "/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/Fiorella.csproj",
+  "expectedPackageFiles": [
+    "/Users/elnur/.nuget/packages/microsoft.netcore.app.host.osx-x64/5.0.13/microsoft.netcore.app.host.osx-x64.5.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}

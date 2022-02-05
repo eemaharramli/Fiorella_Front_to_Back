@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{66573EFD-EDBB-44D0-9666-D9324A1F7B56}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Fiorella/Views/Shared/_Layout.cshtml">
+    <Files>
+      <File FileName="Fiorella/Program.cs" Line="5" Column="20" />
+      <File FileName="Fiorella/Views/Shared/_Layout.cshtml" Line="394" Column="8" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Fiorella" expanded="True">
+            <Node name="Fiorella" expanded="True">
+              <Node name="Views" expanded="True">
+                <Node name="Shared" expanded="True">
+                  <Node name="_Layout.cshtml" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="Fiorella" expanded="True" selected="True">
+            <Node name="Fiorella" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Fiorella PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

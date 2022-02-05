@@ -9,27 +9,20 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Fiorella/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fiorella/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/Controllers/HomeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/DataAccessLayer/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/DataAccessLayer/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/Fiorella.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/Fiorella.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fiorella/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fiorella/Models/ViewModels/HomeViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/Models/ViewModels/HomeViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/Views/Home/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/Views/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/Views/_ViewImport.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/Views/_ViewImport.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.StaticWebAssets.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.Views.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/Fiorella.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/ref/Fiorella.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/bin/Debug/net5.0/ref/Fiorella.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.Views.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Razor/Views/_ViewImport.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Razor/Views/_ViewImport.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Razor/Views/Home/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Razor/Views/Home/Index.cshtml.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/ref/Fiorella.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/ref/Fiorella.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +46,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="24gfjMcKsKsbkCNnX8oxo1CIioh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -115,7 +107,8 @@
       <workItem from="1644057289540" duration="111000" />
       <workItem from="1644057415099" duration="1958000" />
       <workItem from="1644060210718" duration="1784000" />
-      <workItem from="1644063418456" duration="3712000" />
+      <workItem from="1644063418456" duration="3930000" />
+      <workItem from="1644070710579" duration="2070000" />
     </task>
     <task id="LOCAL-00001" summary="Project has been created">
       <created>1644057317558</created>

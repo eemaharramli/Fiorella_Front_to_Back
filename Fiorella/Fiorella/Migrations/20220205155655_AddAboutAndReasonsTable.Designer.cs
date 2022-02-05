@@ -4,14 +4,16 @@ using Fiorella.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fiorella.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220205155655_AddAboutAndReasonsTable")]
+    partial class AddAboutAndReasonsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,45 +62,51 @@ namespace Fiorella.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Fiorella.Models.Expert", b =>
+            modelBuilder.Entity("Fiorella.Models.ExpertInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ExpertJobId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Fullname")
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Job")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("JobId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExpertJobId");
-
-                    b.ToTable("Experts");
-                });
-
-            modelBuilder.Entity("Fiorella.Models.ExpertJob", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExpertJobs");
+                    b.ToTable("ExpertInfos");
+                });
+
+            modelBuilder.Entity("Fiorella.Models.Experts", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ExpertId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ExpertInfoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subtitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpertInfoId");
+
+                    b.ToTable("Experts");
                 });
 
             modelBuilder.Entity("Fiorella.Models.Product", b =>
@@ -189,13 +197,13 @@ namespace Fiorella.Migrations
                     b.Navigation("Reason");
                 });
 
-            modelBuilder.Entity("Fiorella.Models.Expert", b =>
+            modelBuilder.Entity("Fiorella.Models.Experts", b =>
                 {
-                    b.HasOne("Fiorella.Models.ExpertJob", "ExpertJob")
-                        .WithMany("Experts")
-                        .HasForeignKey("ExpertJobId");
+                    b.HasOne("Fiorella.Models.ExpertInfo", "ExpertInfo")
+                        .WithMany()
+                        .HasForeignKey("ExpertInfoId");
 
-                    b.Navigation("ExpertJob");
+                    b.Navigation("ExpertInfo");
                 });
 
             modelBuilder.Entity("Fiorella.Models.Product", b =>
@@ -212,11 +220,6 @@ namespace Fiorella.Migrations
             modelBuilder.Entity("Fiorella.Models.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Fiorella.Models.ExpertJob", b =>
-                {
-                    b.Navigation("Experts");
                 });
 #pragma warning restore 612, 618
         }

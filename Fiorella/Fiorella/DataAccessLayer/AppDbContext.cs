@@ -17,5 +17,7 @@ namespace Fiorella.DataAccessLayer
         public DbSet<Reason> Reasons { get; set; }
         public DbSet<Expert> Experts { get; set; }
         public DbSet<ExpertJob> ExpertJobs { get; set; }
+        
+        public DbSet<Blog> Blogs { get; set; }
     }
 }

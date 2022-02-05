@@ -12,5 +12,6 @@ namespace Fiorella.Models.ViewModels
         public List<Reason> Reasons { get; set; }
         public List<Expert> Experts { get; set; }
         public List<ExpertJob> ExpertJobs { get; set; }
+        public List<Blog> Blogs { get; set; }
     }
 }

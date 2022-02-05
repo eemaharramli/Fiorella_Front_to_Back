@@ -25,6 +25,7 @@ namespace Fiorella.Controllers
             var reason = this._dbContext.Reasons.ToList();
             var expert = this._dbContext.Experts.Include(x => x.ExpertJob).ToList();
             var expertJob = this._dbContext.ExpertJobs.ToList();
+            var blog = this._dbContext.Blogs.ToList();
 
             return View(new HomeViewModel
             {
@@ -35,7 +36,8 @@ namespace Fiorella.Controllers
                 About = about,
                 Reasons = reason,
                 Experts = expert,
-                ExpertJobs = expertJob
+                ExpertJobs = expertJob,
+                Blogs = blog,
             });
         }
     }

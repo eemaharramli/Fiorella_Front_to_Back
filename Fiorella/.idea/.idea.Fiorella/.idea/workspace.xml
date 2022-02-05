@@ -22,7 +22,6 @@
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Fiorella.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Razor/Views/Home/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/Razor/Views/Home/Index.cshtml.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/ref/Fiorella.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/ref/Fiorella.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +107,7 @@
       <workItem from="1644057415099" duration="1958000" />
       <workItem from="1644060210718" duration="1784000" />
       <workItem from="1644063418456" duration="3930000" />
-      <workItem from="1644070710579" duration="8542000" />
+      <workItem from="1644070710579" duration="9713000" />
     </task>
     <task id="LOCAL-00001" summary="Project has been created">
       <created>1644057317558</created>

@@ -109,7 +109,6 @@
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Home/Index.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/_ViewImport.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/_ViewStart.cshtml.g.cs
-/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/bin/Debug/net5.0/Fiorella.StaticWebAssets.xml
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/bin/Debug/net5.0/Fiorella
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/bin/Debug/net5.0/Microsoft.Data.SqlClient.dll
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.dll

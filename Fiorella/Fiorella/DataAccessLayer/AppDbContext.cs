@@ -1,3 +1,4 @@
+using Fiorella.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fiorella.DataAccessLayer
@@ -7,6 +8,8 @@ namespace Fiorella.DataAccessLayer
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-         
+
+        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<SliderImage> SliderImages { get; set; }
     }
 }

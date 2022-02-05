@@ -21,11 +21,20 @@ namespace Fiorella
         {
             this._configuration = configuration;
         }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = this._configuration.GetConnectionString("DefaultConnection");
 
+            // var connectionStringForWindows = this._configuration.GetConnectionString("ConnectionForWindows");
+            //
+            // services.AddDbContext<AppDbContext>(options =>
+            // {
+            //     options.UseSqlServer(connectionStringForWindows);
+            // });
+
+
+        var connectionString = this._configuration.GetConnectionString("DefaultConnection");
+            
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(connectionString);

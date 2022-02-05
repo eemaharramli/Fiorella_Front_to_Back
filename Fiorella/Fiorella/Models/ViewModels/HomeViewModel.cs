@@ -13,5 +13,7 @@ namespace Fiorella.Models.ViewModels
         public List<Expert> Experts { get; set; }
         public List<ExpertJob> ExpertJobs { get; set; }
         public List<Blog> Blogs { get; set; }
+        public List<Thing> Things { get; set; }
+        public List<InstagramImage> InstagramImages { get; set; }
     }
 }

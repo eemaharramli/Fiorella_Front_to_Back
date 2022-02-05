@@ -33,7 +33,7 @@ namespace Fiorella
             // });
 
 
-        var connectionString = this._configuration.GetConnectionString("DefaultConnection");
+            var connectionString = this._configuration.GetConnectionString("DefaultConnection");
             
             services.AddDbContext<AppDbContext>(options =>
             {

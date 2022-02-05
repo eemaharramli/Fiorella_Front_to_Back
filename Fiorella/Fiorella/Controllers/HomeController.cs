@@ -26,6 +26,8 @@ namespace Fiorella.Controllers
             var expert = this._dbContext.Experts.Include(x => x.ExpertJob).ToList();
             var expertJob = this._dbContext.ExpertJobs.ToList();
             var blog = this._dbContext.Blogs.ToList();
+            var thing = this._dbContext.Things.ToList();
+            var instagramImages = this._dbContext.InstagramImages.ToList();
 
             return View(new HomeViewModel
             {
@@ -38,6 +40,8 @@ namespace Fiorella.Controllers
                 Experts = expert,
                 ExpertJobs = expertJob,
                 Blogs = blog,
+                Things = thing,
+                InstagramImages = instagramImages
             });
         }
     }

@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Fiorella/Views/Shared/_Layout.cshtml">
     <Files>
       <File FileName="Fiorella/Program.cs" Line="5" Column="20" />
-      <File FileName="Fiorella/Views/Shared/_Layout.cshtml" Line="394" Column="8" />
+      <File FileName="Fiorella/Views/Shared/_Layout.cshtml" Line="374" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,13 +15,6 @@
                 </Node>
               </Node>
             </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="Fiorella" expanded="True" selected="True">
-            <Node name="Fiorella" expanded="True" />
           </Node>
         </State>
       </Pad>

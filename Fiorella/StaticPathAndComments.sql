@@ -114,3 +114,11 @@ insert into InstagramImages values ('instagram1.jpg'),
                                    ('instagram8.jpg');
 
 
+                        /*       Add Subscribe Image        */
+
+select * from Subscribes;
+
+insert into Subscribes values ('h3-background-img.jpg');
+
+
+

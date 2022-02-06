@@ -169,21 +169,24 @@
 
         <!-- SUBSCRIBE START -->
 
-        <section id="subscribe">
-            <div class="container py-5">
-                <div class="row py-5">
-                    <div class="col-12">
-                        <div class="content text-center py-5">
-                            <h3>Join The Colorful Bunch!</h3>
-                            <div class="form-group d-flex justify-content-center flex-wrap mt-5">
-                                <input type="email" placeholder="Email Address" class="form-control-lg rounded-0">
-                                <button class="btn btn-danger btn-lg rounded-0 px-5 mt-3 mt-sm-0">Subscribe</button>
+        @foreach (var item in homeViewModel.Subscribes)
+        {
+            <section id="subscribe" style="background: url('~/../img/@item.Image'); background-attachment: fixed">
+                <div class="container py-5">
+                    <div class="row py-5">
+                        <div class="col-12">
+                            <div class="content text-center py-5">
+                                <h3>Join The Colorful Bunch!</h3>
+                                <div class="form-group d-flex justify-content-center flex-wrap mt-5">
+                                    <input type="email" placeholder="Email Address" class="form-control-lg rounded-0">
+                                    <button class="btn btn-danger btn-lg rounded-0 px-5 mt-3 mt-sm-0">Subscribe</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        }
 
         <!-- SUBSCRIBE END -->
 

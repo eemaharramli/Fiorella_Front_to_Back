@@ -29,6 +29,7 @@ namespace Fiorella.Controllers
             var blog = this._dbContext.Blogs.ToList();
             var thing = this._dbContext.Things.ToList();
             var instagramImages = this._dbContext.InstagramImages.ToList();
+            var subscribe = this._dbContext.Subscribes.ToList();
 
             // DateTime test = new DateTime("2022-01-01");
 
@@ -45,7 +46,8 @@ namespace Fiorella.Controllers
                 ExpertJobs = expertJob,
                 Blogs = blog,
                 Things = thing,
-                InstagramImages = instagramImages
+                InstagramImages = instagramImages,
+                Subscribes = subscribe
             });
         }
     }

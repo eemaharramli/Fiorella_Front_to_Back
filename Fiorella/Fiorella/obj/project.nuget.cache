@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a7JF9oHu2vhfdjdNWVkDyFXSa5q6GTMZ7CyoxJ82J8yHdMtB3xs+2LjF2nUjMrq5+5Y2o8sl7DNV8CYmadKVwg==",
+  "dgSpecHash": "k6hbZT4F5ESXFESTFqME5QxZ1scoxy4cIxDdmsZe+TOL7kh/BBR2KWImoGgxSqiqyRdilIex6iRV7z71+xlAHg==",
   "success": true,
   "projectFilePath": "/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/Fiorella.csproj",
   "expectedPackageFiles": [
@@ -127,8 +127,7 @@
     "/Users/elnur/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/elnur/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/elnur/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "/Users/elnur/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "/Users/elnur/.nuget/packages/microsoft.netcore.app.host.osx-x64/5.0.13/microsoft.netcore.app.host.osx-x64.5.0.13.nupkg.sha512"
+    "/Users/elnur/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

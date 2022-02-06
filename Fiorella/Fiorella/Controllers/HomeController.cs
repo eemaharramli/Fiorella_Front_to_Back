@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models.ViewModels;
@@ -29,6 +30,9 @@ namespace Fiorella.Controllers
             var thing = this._dbContext.Things.ToList();
             var instagramImages = this._dbContext.InstagramImages.ToList();
 
+            // DateTime test = new DateTime("2022-01-01");
+
+            // test.ToString("dd.MM.yyyy"); //Bele
             return View(new HomeViewModel
             {
                 SliderImages = sliderImages,

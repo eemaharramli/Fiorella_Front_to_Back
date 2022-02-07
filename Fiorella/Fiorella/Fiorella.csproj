@@ -9,12 +9,17 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.13">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Product\Index.cshtml" />
     </ItemGroup>
 
 </Project>

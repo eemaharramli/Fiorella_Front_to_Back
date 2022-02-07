@@ -1,5 +1,26 @@
 $(document).ready(function () {
 
+    //Products
+    
+    var skip = 4;
+    var emptyProduct = $('<div>').css({margin: "0 auto"}).text("No more Product")
+    
+    $(document).on('scroll', function(){
+        $.ajax({
+            type: "GET",
+            url: "/Products/Load?skip=" + skip,
+            success: function (res){
+                $('#productRow').append(res)
+                skip += 4
+                
+                if (skip >= $('#productsCount').val()){
+                    $('#loadMoreAnim').remove()
+                    $('#productRow').append(emptyProduct)
+                }
+            }
+        })
+    })
+    
     // HEADER
 
     $(document).on('click', '#search', function () {

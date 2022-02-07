@@ -31,9 +31,6 @@ namespace Fiorella.Controllers
             var instagramImages = this._dbContext.InstagramImages.ToList();
             var subscribe = this._dbContext.Subscribes.ToList();
 
-            // DateTime test = new DateTime("2022-01-01");
-
-            // test.ToString("dd.MM.yyyy"); //Bele
             return View(new HomeViewModel
             {
                 SliderImages = sliderImages,

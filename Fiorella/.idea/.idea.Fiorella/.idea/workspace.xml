@@ -5,7 +5,12 @@
     <projectFile profileName="Fiorella">Fiorella/Fiorella.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="805116bc-2d81-404d-9000-6778aaf6719b" name="Changes" comment="" />
+    <list default="true" id="805116bc-2d81-404d-9000-6778aaf6719b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Fiorella/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Fiorella/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Fiorella/xs/UserPrefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Fiorella/xs/UserPrefs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Fiorella/xs/project-cache/Fiorella-Debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Fiorella/xs/project-cache/Fiorella-Debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StaticPathAndComments.sql" beforeDir="false" afterPath="$PROJECT_DIR$/StaticPathAndComments.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +31,7 @@
     <option name="defaultAccountId" value="8e21e6b6-8235-4e0f-b4f5-b446b226328c" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2d166fb46b524cbcb76d26747e88dd5e10400/7/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Fiorella/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="24gfjMcKsKsbkCNnX8oxo1CIioh" />
@@ -92,6 +98,8 @@
       <workItem from="1644070710579" duration="16950000" />
       <workItem from="1644140058939" duration="1115000" />
       <workItem from="1644172089258" duration="740000" />
+      <workItem from="1644218662982" duration="933000" />
+      <workItem from="1644246105261" duration="11049000" />
     </task>
     <task id="LOCAL-00001" summary="Project has been created">
       <created>1644057317558</created>

@@ -121,4 +121,17 @@ select * from Subscribes;
 insert into Subscribes values ('h3-background-img.jpg');
 
 
+                        /*       Add more data to Products Table        */
+
+select * from Products;
+
+insert into Products values ('MAJESTY PALM', 259, 'shop-14-img.jpg', 1),
+                            ('MAJESTY PALM', 259, 'shop-13-img.jpg', 1),
+                            ('MAJESTY PALM', 259, 'shop-12-img.jpg', 2),
+                            ('MAJESTY PALM', 259, 'shop-11-img.jpg', 2),
+                            ('MAJESTY PALM', 259, 'shop-10-img.jpg', 3),
+                            ('MAJESTY PALM', 259, 'shop-9-img.jpg', 3),
+                            ('MAJESTY PALM', 259, 'shop-8-img.jpg', 4),
+                            ('MAJESTY PALM', 259, 'shop-7-img.jpg', 4);
+
 

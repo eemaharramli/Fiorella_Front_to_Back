@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <nav
                         class="navbar navbar-expand-lg d-flex d-lg-block justify-content-between d-xl-flex navbar-light py-3 py-lg-0">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                             <img src="~/img/logo.png" alt="" id="logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -38,17 +38,17 @@
                         <div class="collapse navbar-collapse d-none d-lg-block" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
+                                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                                     <ul class="list-unstyled py-3">
-                                        <li class=""><a class="px-1" href="/Home/Index">Home 1</a></li>
-                                        <li class=""><a class="px-1" href="">Home 2</a></li>
-                                        <li class=""><a class="px-1" href="">Home 3</a></li>
+                                        <li class=""><a class="px-1" asp-controller="Home" asp-action="Index">Home 1</a></li>
+                                        <li class=""><a class="px-1" asp-controller="Home" asp-action="Index">Home 2</a></li>
+                                        <li class=""><a class="px-1" asp-controller="Home" asp-action="Index">Home 3</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Pages</a>
+                                    <a class="nav-link" href="#">Experts</a>
                                     <ul class="list-unstyled py-3">
-                                        <li class=""><a class="px-1" href="">Page 1</a></li>
+                                        <li class=""><a class="px-1" asp-controller="Experts" asp-action="Index">Page 1</a></li>
                                         <li class=""><a class="px-1" href="">Page 2</a></li>
                                         <li class=""><a class="px-1" href="">Page 3</a></li>
                                     </ul>
@@ -62,8 +62,8 @@
                                                     <h5>Product Types</h5>
                                                     <ul class="list-unstyled py-3">
                                                         <li class=""><a class="px-3" asp-controller="Products" asp-action="Index">Product Types 1</a></li>
-                                                        <li class=""><a class="px-3" href="">Product Types 2</a></li>
-                                                        <li class=""><a class="px-3" href="">Product Types 3</a></li>
+                                                        <li class=""><a class="px-3" asp-controller="Products" asp-action="Index">Product Types 2</a></li>
+                                                        <li class=""><a class="px-3" asp-controller="Products" asp-action="Index">Product Types 3</a></li>
                                                     </ul>
                                                 </div>
                                             </div>

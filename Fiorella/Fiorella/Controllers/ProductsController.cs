@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Fiorella.DataAccessLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,22 @@ namespace Fiorella.Controllers
             var products = this._dbContext.Products.Include(x => x.Category).Skip(skip).Take(4).ToList();
 
             return PartialView("_ProductPartial", products);
+        }
+
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await this._dbContext.Products.SingleOrDefaultAsync(x=> x.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
     }
 }

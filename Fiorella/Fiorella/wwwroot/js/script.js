@@ -1,5 +1,20 @@
 $(document).ready(function () {
 
+    //Search from Database
+    
+    $(document).on('keyup', '#input-search', function () {
+        var searchedProduct = $(this).val();
+        $("#searchedProducts li").slice(1).remove()
+        
+        $.ajax({
+            type: "GET",
+            url: "Home/Search?searchedProduct=" + searchedProduct,
+            success: function (res){
+                $("#searchedProducts").append(res);
+            }
+        });
+    });
+    
     //Products
     
     var skip = 4;

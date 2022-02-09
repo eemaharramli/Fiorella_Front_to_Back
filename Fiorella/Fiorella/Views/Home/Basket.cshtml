@@ -1,0 +1,48 @@
+@model List<Fiorella.Models.ViewModels.BasketViewModel>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+@{
+    double totalPrice = 0;
+    foreach (var item in Model)
+    {
+        totalPrice += item.Price;
+    }
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col">Product Count</th>
+                    <th scope="col">Product Image</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row" style="vertical-align:middle !important;">@item.Id</th>
+                        <td style="vertical-align:middle !important;">@item.Name</td>
+                        <td style="vertical-align:middle !important;" id="productPrice">@item.Price</td>
+                        <td style="vertical-align:middle !important;" id="productCount">@item.Count</td>
+                        <td style="vertical-align:middle !important;"><img src="~/img/@item.Image" alt="" style="max-width: 100px"></td>
+                        <td  style="vertical-align:middle !important;"><button id="addMoreProduct">+</button><button id="removeProduct">-</button></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <div class="row justify-content-center">
+            <h2>Total price: <span>@totalPrice</span></h2>
+        </div>
+    </div>
+</section>

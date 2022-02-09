@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Fiorella.DataAccessLayer;
+using Fiorella.Models;
 using Fiorella.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Fiorella.Controllers
 {
@@ -70,13 +74,87 @@ namespace Fiorella.Controllers
         }
 
 
-        public IActionResult Basket()
+        public async Task<IActionResult> Basket()
         {
-            var session = HttpContext.Session.GetString("session");
-            var cookie = Request.Cookies["cookies"];
+            var basket = Request.Cookies["basket"];
+            if (string.IsNullOrEmpty(basket))
+            {
+                return Content("Empty basket");
+            }
+            
+            var basketViewModels = JsonConvert.DeserializeObject<List<BasketViewModel>>(basket);
+            var newBasket = new List<BasketViewModel>();
+            foreach (var basketViewModel in basketViewModels)
+            {
+                var product = await this._dbContext.Products.FindAsync(basketViewModel.Id);
+                if (product == null)
+                {
+                    continue;
+                }
+                newBasket.Add(new BasketViewModel
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Image = product.Image,
+                    Count = basketViewModel.Count,
+                    Price = product.Price * basketViewModel.Count,
+                });
+            }
+            
+            basket = JsonConvert.SerializeObject(newBasket);
+            Response.Cookies.Append("basket", basket);
+            
+            
+            // return Json(newBasket);
+            return View(newBasket);
+        }
 
+        public async Task<IActionResult> AddToBasket(int id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            
+            var product = await this._dbContext.Products.FindAsync(id);
+            
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            List<BasketViewModel> basketViewModels;
+            
+            var existBasket = Request.Cookies["basket"];
+            if (string.IsNullOrEmpty(existBasket))
+            {
+                basketViewModels = new List<BasketViewModel>();
+            }
+            else
+            {
+                basketViewModels = JsonConvert.DeserializeObject<List<BasketViewModel>>(existBasket);
+            }
 
-            return Content(session + " - " + cookie);
+            var existBasketViewModel = basketViewModels.FirstOrDefault(x => x.Id == id);
+            var productPrice = product.Price;
+            if (existBasketViewModel == null)
+            {
+                existBasketViewModel = new BasketViewModel
+                {
+                    Id = product.Id
+                };
+                basketViewModels.Add(existBasketViewModel);
+            }
+            else
+            {
+                existBasketViewModel.Count++;
+            }
+
+            var basket = JsonConvert.SerializeObject(basketViewModels);
+            Response.Cookies.Append("basket", basket);
+            
+            
+            return RedirectToAction(nameof(Index));
         }
     }
 }

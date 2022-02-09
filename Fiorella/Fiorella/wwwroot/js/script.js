@@ -1,4 +1,13 @@
 $(document).ready(function () {
+    
+    //Basket Products
+    
+    $("#addMoreProduct").on('click', function (){
+        // for (var item of $(this)) {
+        //     console.log(item.parentNode.parentNode)
+        // }
+        console.log($(this).before())
+    })
 
     //Search from Database
     
@@ -20,21 +29,21 @@ $(document).ready(function () {
     var skip = 4;
     var emptyProduct = $('<div>').css({margin: "0 auto"}).text("No more Product")
     
-    $(document).on('scroll', function(){
-        $.ajax({
-            type: "GET",
-            url: "/Products/Load?skip=" + skip,
-            success: function (res){
-                $('#productRow').append(res)
-                skip += 4
-                
-                if (skip >= $('#productsCount').val()){
-                    $('#loadMoreAnim').remove()
-                    $('#productRow').append(emptyProduct)
-                }
-            }
-        })
-    })
+    // $(document).on('scroll', function(){
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "/Products/Load?skip=" + skip,
+    //         success: function (res){
+    //             $('#productRow').append(res)
+    //             skip += 4
+    //            
+    //             if (skip >= $('#productsCount').val()){
+    //                 $('#loadMoreAnim').remove()
+    //                 $('#productRow').append(emptyProduct)
+    //             }
+    //         }
+    //     })
+    // })
     
     // HEADER
 

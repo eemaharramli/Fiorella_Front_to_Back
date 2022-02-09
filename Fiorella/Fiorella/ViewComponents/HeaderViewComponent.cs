@@ -1,7 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Fiorella.DataAccessLayer;
+using Fiorella.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Fiorella.ViewComponents
 {
@@ -16,6 +21,25 @@ namespace Fiorella.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            var count = 0;
+            double price = 0;
+            double total = 0;
+            var basket = Request.Cookies["basket"];
+            if (!string.IsNullOrEmpty(basket))
+            {
+                var products = JsonConvert.DeserializeObject<List<BasketViewModel>>(basket);
+                count = products.Count;
+                foreach (var item in products)
+                {
+                    price += item.Price * item.Count;
+                }
+            }
+            
+            /////////???????????????????????? price problem
+
+            ViewBag.BasketCount = count;
+            ViewBag.Total = price;
+            
             var bio = await this._dbContext.Bios.SingleOrDefaultAsync();
             
             return View(bio);

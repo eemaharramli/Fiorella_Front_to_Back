@@ -145,4 +145,6 @@
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/bin/Debug/net5.0/Newtonsoft.Json.Bson.dll
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/_ProductPartial.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/bin/Debug/net5.0/Fiorella
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/Components/Product/Default.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/Components/Expert/Default.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Experts/Index.cshtml.g.cs

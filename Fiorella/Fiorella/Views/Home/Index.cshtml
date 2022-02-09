@@ -8,7 +8,7 @@
     
 }
 
-<!-- SLIDER START -->
+        <!-- SLIDER START -->
 
         <section id="slider">
             <div class="owl-carousel slider">
@@ -69,26 +69,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    @* <partial name="_ProductPartial" /> *@
-                    @foreach (var item in homeViewModel.Products)
-                    {
-                        <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                            <div class="product-item text-center" data-id="@item.Category.Name.ToLower()">
-                                <div class="img">
-                                    <a href="">
-                                        <img src="~/img/@item.Image" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="title mt-3">
-                                    <h6>@item.Name</h6>
-                                </div>
-                                <div class="price">
-                                    <span class="text-black-50">Add to cart</span>
-                                    <span class="text-black-50">$@item.Price</span>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                    @await Component.InvokeAsync("Product")
                 </div>
             </div>
         </section>
@@ -145,20 +126,7 @@
                     </div>
                 </div>
                 <div class="row pb-5">
-                    @foreach (var item in homeViewModel.Experts)
-                    {
-                        <div class="col-md-6 col-lg-3">
-                            <div class="item text-center">
-                                <div class="img">
-                                    <img src="~/img/@item.Image" class="img-fluid rounded-circle" alt="">
-                                </div>
-                                <div class="text mt-3">
-                                    <h6>@item.Fullname</h6>
-                                    <p class="text-black-50">@item.ExpertJob.Name</p>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                    @await Component.InvokeAsync("Expert")
                     <div class="col-lg-3"></div>
                     <div class="col-lg-3"></div>
                     <div class="col-lg-3"></div>

@@ -19,9 +19,8 @@ namespace Fiorella.Controllers
         public IActionResult Index()
         {
             ViewBag.ProductsCount = _productsCount;
-            var products = this._dbContext.Products.Include(x=>x.Category).Take(4).ToList();
             
-            return View(products);
+            return View();
         }
 
         public IActionResult Load(int skip)

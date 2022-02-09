@@ -20,6 +20,8 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Product\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Components\Expert\Default.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Expert\Index.cshtml" />
     </ItemGroup>
 
 </Project>

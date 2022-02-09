@@ -33,6 +33,8 @@ namespace Fiorella
             //     options.UseSqlServer(connectionStringForWindows);
             // });
 
+            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(1));
+            
             var connectionString = this._configuration.GetConnectionString("DefaultConnection");
             
             services.AddDbContext<AppDbContext>(options =>
@@ -53,6 +55,8 @@ namespace Fiorella
 
             app.UseStaticFiles();
 
+            app.UseSession();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");

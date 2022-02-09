@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,10 @@ namespace Fiorella.Controllers
         
         public IActionResult Index()
         {
+            HttpContext.Session.SetString("session", "session value");
+
+            Response.Cookies.Append("cookies", "cookie value", new CookieOptions{Expires = DateTimeOffset.Now.AddHours(1)});
+
             var sliderImages = this._dbContext.SliderImages.ToList();
             var slider = this._dbContext.Sliders.SingleOrDefault();
             var categories = this._dbContext.Categories.ToList();
@@ -62,6 +67,16 @@ namespace Fiorella.Controllers
                 .Where(x => x.Name.ToLower().Contains(searchedProduct.ToLower())).ToListAsync();
 
             return PartialView("_SearchedProductPartial", products);
+        }
+
+
+        public IActionResult Basket()
+        {
+            var session = HttpContext.Session.GetString("session");
+            var cookie = Request.Cookies["cookies"];
+
+
+            return Content(session + " - " + cookie);
         }
     }
 }

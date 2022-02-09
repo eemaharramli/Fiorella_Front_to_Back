@@ -31,6 +31,7 @@ namespace Fiorella.Controllers
             var thing = this._dbContext.Things.ToList();
             var instagramImages = this._dbContext.InstagramImages.ToList();
             var subscribe = this._dbContext.Subscribes.ToList();
+            var bio = this._dbContext.Bios.ToList();
 
             return View(new HomeViewModel
             {
@@ -45,7 +46,8 @@ namespace Fiorella.Controllers
                 Blogs = blog,
                 Things = thing,
                 InstagramImages = instagramImages,
-                Subscribes = subscribe
+                Subscribes = subscribe,
+                Bios = bio
             });
         }
 

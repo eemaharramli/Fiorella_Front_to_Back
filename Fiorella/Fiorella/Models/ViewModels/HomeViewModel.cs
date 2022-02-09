@@ -17,5 +17,6 @@ namespace Fiorella.Models.ViewModels
         public List<InstagramImage> InstagramImages { get; set; }
         
         public List<Subscribe> Subscribes { get; set; }
+        public List<Bio> Bios { get; set; }
     }
 }

@@ -21,5 +21,6 @@ namespace Fiorella.DataAccessLayer
         public DbSet<Thing> Things { get; set; }
         public DbSet<InstagramImage> InstagramImages { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
+        public DbSet<Bio> Bios { get; set; }
     }
 }

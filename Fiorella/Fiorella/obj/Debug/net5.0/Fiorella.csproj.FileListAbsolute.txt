@@ -148,3 +148,5 @@
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/Components/Product/Default.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/Components/Expert/Default.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Experts/Index.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/Components/Header/Default.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/Components/Footer/Default.cshtml.g.cs

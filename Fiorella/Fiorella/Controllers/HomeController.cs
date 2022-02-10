@@ -156,5 +156,101 @@ namespace Fiorella.Controllers
             
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> AddProductCount(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            
+            var product = await this._dbContext.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var existBasket = Request.Cookies["basket"];
+            List<BasketViewModel> basketViewModels;
+
+            if (string.IsNullOrEmpty(existBasket))
+            {
+                basketViewModels = new List<BasketViewModel>();
+            }
+            else
+            {
+                basketViewModels = JsonConvert.DeserializeObject<List<BasketViewModel>>(existBasket);
+            }
+
+            var existBasketViewModel = basketViewModels.FirstOrDefault(x => x.Id == id);
+            if (existBasketViewModel == null)
+            {
+                basketViewModels.Add(new BasketViewModel
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Image = product.Image,
+                    Price = product.Price
+                });
+            }
+            else
+            {
+                existBasketViewModel.Count++;
+                existBasketViewModel.Price += existBasketViewModel.Price;
+            }
+            
+            var basket = JsonConvert.SerializeObject(basketViewModels);
+            Response.Cookies.Append("basket", basket);
+            
+            return RedirectToAction(nameof(Basket));
+        }
+
+        public async Task<IActionResult> RemoveProductCount(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            
+            var product = await this._dbContext.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var existBasket = Request.Cookies["basket"];
+            List<BasketViewModel> basketViewModels;
+
+            if (string.IsNullOrEmpty(existBasket))
+            {
+                basketViewModels = new List<BasketViewModel>();
+            }
+            else
+            {
+                basketViewModels = JsonConvert.DeserializeObject<List<BasketViewModel>>(existBasket);
+            }
+
+            var existBasketViewModel = basketViewModels.FirstOrDefault(x => x.Id == id);
+            if (existBasketViewModel == null)
+            {
+                basketViewModels.Add(new BasketViewModel
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Image = product.Image,
+                    Price = product.Price
+                });
+            }
+            else
+            {
+                existBasketViewModel.Count--;
+                existBasketViewModel.Price -= existBasketViewModel.Price;
+            }
+            
+            var basket = JsonConvert.SerializeObject(basketViewModels);
+            Response.Cookies.Append("basket", basket);
+            
+            return RedirectToAction(nameof(Basket));
+        }
     }
 }

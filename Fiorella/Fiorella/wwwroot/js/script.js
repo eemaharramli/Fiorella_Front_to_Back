@@ -2,12 +2,29 @@ $(document).ready(function () {
     
     //Basket Products
     
-    $("#addMoreProduct").on('click', function (){
-        // for (var item of $(this)) {
-        //     console.log(item.parentNode.parentNode)
-        // }
-        console.log($(this).before())
-    })
+    // var basket = JSON.parse(Cookies.get('basket'))
+    // var addMore = document.querySelectorAll("#addMoreProduct");
+    // addMore.forEach(element=>{
+    //     element.addEventListener('click', function (){
+    //         var parent = this.closest("tr")
+    //         $(parent).each(function(){
+    //             $(this).find('td').each(function(){
+    //                 // console.log(this.getAttribute('id').value())
+    //                 // console.log($(this).attr('id'))
+    //                 if (this.hasAttribute('id')){
+    //                     if(this.getAttribute('id') === 'productId'){
+    //                         for (let i = 0; i <= this.parentNode.rows; i++){
+    //
+    //                         }
+    //                     }
+    //                 }
+    //             })
+    //         })
+    //     })
+    // })
+    
+   
+
 
     //Search from Database
     

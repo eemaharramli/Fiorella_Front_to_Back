@@ -43,6 +43,7 @@ namespace Fiorella.Controllers
             }
 
             var product = await this._dbContext.Products.SingleOrDefaultAsync(x=> x.Id == id);
+            
             if (product == null)
             {
                 return NotFound();

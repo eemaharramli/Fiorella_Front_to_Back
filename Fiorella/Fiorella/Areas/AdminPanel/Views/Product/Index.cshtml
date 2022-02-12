@@ -1,0 +1,43 @@
+@model List<Product>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="main-panel">
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Inverse table</h4>
+          <table class="table table-dark">
+            <thead>
+            <tr>
+              <th> Product name </th>
+              <th> Product Price </th>
+              <th> Actions </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+              <tr>
+                <td> @item.Name </td>
+                <td> $ @item.Price </td>
+                <td>
+                  <a class="btn btn-success" asp-controller="Product" asp-action="Create" > Create </a>
+                  <a class="btn btn-warning" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"> Detail </a>
+                  <a class="btn btn-danger"> Delete </a>
+                </td>
+              </tr>
+            }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

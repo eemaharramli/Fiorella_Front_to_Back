@@ -1,0 +1,74 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Fiorella.DataAccessLayer;
+using Fiorella.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace Fiorella.Areas.AdminPanel.Controllers
+{
+    [Area("AdminPanel")]
+    public class CategoryController : Controller
+    {
+        private readonly AppDbContext _dbContext;
+
+        public CategoryController(AppDbContext dbContext)
+        {
+            this._dbContext = dbContext;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var categories = await this._dbContext.Categories.ToListAsync();
+
+            return View(categories);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            
+            var category = await this._dbContext.Categories.FindAsync(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+            
+            return View(category);
+        }
+        
+        public IActionResult Create()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Category category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            
+            var isExistCategory = await this._dbContext.Categories.AnyAsync(x =>
+                x.Name.ToLower().Trim() == category.Name.ToLower().Trim());
+            
+            if (isExistCategory)
+            {
+                ModelState.AddModelError("Name", "The Category with this name is already exist");
+                return View();
+            }
+
+            await this._dbContext.Categories.AddAsync(category);
+            await this._dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}

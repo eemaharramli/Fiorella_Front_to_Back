@@ -153,3 +153,13 @@
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Shared/_SearchedProductPartial.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Products/Detail.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Views/Home/Basket.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Dashboard/Index.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/_ViewImports.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/_ViewStart.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Product/Index.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Product/Detail.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Category/Index.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Category/Details.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Product/Create.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Category/Create.cshtml.g.cs

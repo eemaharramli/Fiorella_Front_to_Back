@@ -1,5 +1,13 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Fiorella.Models.ViewModels
 @model Fiorella.Models.Bio
+@{
+    double totalPrice = 0;
+    // foreach (var item in BasketViewModel)
+    // {
+    //     totalPrice += item.Price;
+    // }
+}
 <header>
         <div class="container">
             <div class="row">
@@ -143,7 +151,7 @@
                                         <i class="fas fa-shopping-bag"></i>
                                     </a>
                                     <sup class="rounded-circle">@ViewBag.BasketCount</sup>
-                                    <span>CART ($@ViewBag.Total)</span>
+                                    <span>CART ($)</span>
                                     <ul class="list-unstyled py-3">
                                         <li class="">No products in the cart.</li>
                                     </ul>

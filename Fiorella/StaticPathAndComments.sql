@@ -33,22 +33,26 @@ insert into Categories values ('Popular'),
 
 select * from Products;
 
-insert into Products values ('MAJESTY PALM', 259, 'shop-14-img.jpg', 1),
-                            ('MAJESTY PALM', 259, 'shop-13-img.jpg', 1),
-                            ('MAJESTY PALM', 259, 'shop-12-img.jpg', 2),
-                            ('MAJESTY PALM', 259, 'shop-11-img.jpg', 2),
-                            ('MAJESTY PALM', 259, 'shop-10-img.jpg', 2),
-                            ('MAJESTY PALM', 259, 'shop-9-img.jpg', 2),
-                            ('MAJESTY PALM', 259, 'shop-8-img.jpg', 2),
-                            ('MAJESTY PALM', 259, 'shop-7-img.jpg', 2);
+insert into Products values ('MAJESTY PALM - 1', 259, 'shop-14-img.jpg', 1),
+                            ('MAJESTY PALM - 2', 259, 'shop-13-img.jpg', 1),
+                            ('MAJESTY PALM - 3', 259, 'shop-12-img.jpg', 2),
+                            ('MAJESTY PALM - 4', 259, 'shop-11-img.jpg', 2),
+                            ('MAJESTY PALM - 5', 259, 'shop-10-img.jpg', 2),
+                            ('MAJESTY PALM - 6', 259, 'shop-9-img.jpg', 2),
+                            ('MAJESTY PALM - 7', 259, 'shop-8-img.jpg', 2),
+                            ('MAJESTY PALM - 8', 259, 'shop-7-img.jpg', 2);
 
 update Products
 set CategoryId = 3
-where Image in('shop-10-img.jpg', 'shop-9-img.jpg')
+where Image in('shop-10-img.jpg', 'shop-9-img.jpg');
 
 update Products
 set CategoryId = 4
-where Image in('shop-8-img.jpg', 'shop-7-img.jpg')
+where Image in('shop-8-img.jpg', 'shop-7-img.jpg');
+
+update Products
+set Name = 'MAJESTY PALM - 16'
+where Id = 16
 
                         /*       Add Reasons Information        */
 
@@ -135,3 +139,21 @@ insert into Products values ('MAJESTY PALM', 259, 'shop-14-img.jpg', 1),
                             ('MAJESTY PALM', 259, 'shop-7-img.jpg', 4);
 
 
+                        /*       Add Data to Bios Table        */
+
+select * from Bios;
+
+insert into Bios values ('logo.png', 'https://www.linkedin.com/', 'https://www.facebook.com/');
+
+
+                        /*       Add Data to Description Column in Categories Table        */
+
+select * from Categories;
+
+update Categories
+set
+Description = 'Lorem ipsum';
+
+
+select *
+from Products;

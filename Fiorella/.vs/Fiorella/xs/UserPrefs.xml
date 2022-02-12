@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{66573EFD-EDBB-44D0-9666-D9324A1F7B56}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Fiorella/Controllers/ProductController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Fiorella/Views/Home/Index.cshtml">
     <Files>
-      <File FileName="Fiorella/Controllers/ProductController.cs" Line="13" Column="2" />
+      <File FileName="Fiorella/Views/Home/Index.cshtml" Line="72" Column="51" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,18 +10,14 @@
             <Node name="Fiorella" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Products" expanded="True">
+                <Node name="Home" expanded="True">
                   <Node name="Index.cshtml" selected="True" />
                 </Node>
+                <Node name="Products" expanded="True" />
                 <Node name="Shared" expanded="True" />
               </Node>
             </Node>
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="Fiorella" selected="True" />
         </State>
       </Pad>
     </Pads>

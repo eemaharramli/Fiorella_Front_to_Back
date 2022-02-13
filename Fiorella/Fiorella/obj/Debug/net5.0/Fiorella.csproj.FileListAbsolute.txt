@@ -163,3 +163,6 @@
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Category/Details.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Product/Create.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Category/Create.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Blog/Index.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Blog/Details.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Blog/Create.cshtml.g.cs

@@ -35,7 +35,7 @@
                         <td style="vertical-align:middle !important;" id="productCount">@item.Count</td>
                         <td style="vertical-align:middle !important;"><img src="~/img/@item.Image" alt="" style="max-width: 100px"></td>
                         <td style="vertical-align:middle !important;">
-                            <a id="addMoreProduct" asp-controller="Home" asp-action="AddProductCount" asp-route-id="@item.Id">+</a>
+                            <a id="addMoreProduct" asp-controller="Home" asp-action="AddProductCount" asp-route-id="@item.Id" data-id="@item.Id">+</a>
                             <a id="removeProduct" asp-controller="Home" asp-action="RemoveProductCount" asp-route-id="@item.Id">-</a>
                         </td>
                     </tr>

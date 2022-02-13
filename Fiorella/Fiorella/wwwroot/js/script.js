@@ -1,31 +1,52 @@
 $(document).ready(function () {
     
     //Basket Products
+
+
+
+    $(document).on('click', '#addToCart', function () {
+        $.ajax({
+            type: "POST",
+            url: "/Home/AddToBasket?id=" + $(this).attr('data-id'),
+            success: function (res) {
+
+                var totalPrice = 0;
+                var totalCount = res.length;
+
+                
+                for (var i = 0; i <= res.length; i++) {
+                    totalPrice += (res[i] * res[i].count);
+                    console.log(res[i].price + ' price')
+                    console.log(res[i].count + 'count')
+                    console.log(totalPrice + 'total price')
+                    
+                }
+                console.log(totalPrice)
+                console.log(totalCount)
+                
+                $("#basket-total-price").text("CART ($" + totalPrice + ")");
+                $("#basket-count").text(totalCount);
+            }
+        });
+    })
+
     
-    // var basket = JSON.parse(Cookies.get('basket'))
-    // var addMore = document.querySelectorAll("#addMoreProduct");
-    // addMore.forEach(element=>{
-    //     element.addEventListener('click', function (){
-    //         var parent = this.closest("tr")
-    //         $(parent).each(function(){
-    //             $(this).find('td').each(function(){
-    //                 // console.log(this.getAttribute('id').value())
-    //                 // console.log($(this).attr('id'))
-    //                 if (this.hasAttribute('id')){
-    //                     if(this.getAttribute('id') === 'productId'){
-    //                         for (let i = 0; i <= this.parentNode.rows; i++){
-    //
-    //                         }
-    //                     }
-    //                 }
-    //             })
-    //         })
+    // $(document).on('click', '#addToCart', function (e){
+    //     e.preventDefault()
+    //     console.log(this)
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/Home/AddToBasket?id=' + $(this).attr('data-id'),
+    //         success: function (res){
+    //             var totalPrice = 0;
+    //                 for (let i = 0; i < res.length; i++) {
+    //                 totalPrice += res[i].price * res[i].count;
+    //             }
+    //             console.log(totalPrice)
+    //             // $('#basketTotalPrice').text('CART ($ ' + res + ')')
+    //         }
     //     })
-    // })
-    
-   
-
-
+    // })    
     //Search from Database
     
     $(document).on('keyup', '#input-search', function () {
@@ -46,21 +67,21 @@ $(document).ready(function () {
     var skip = 4;
     var emptyProduct = $('<div>').css({margin: "0 auto"}).text("No more Product")
     
-    // $(document).on('scroll', function(){
-    //     $.ajax({
-    //         type: "GET",
-    //         url: "/Products/Load?skip=" + skip,
-    //         success: function (res){
-    //             $('#productRow').append(res)
-    //             skip += 4
-    //            
-    //             if (skip >= $('#productsCount').val()){
-    //                 $('#loadMoreAnim').remove()
-    //                 $('#productRow').append(emptyProduct)
-    //             }
-    //         }
-    //     })
-    // })
+    $(document).on('scroll', function(){
+        $.ajax({
+            type: "GET",
+            url: "/Products/Load?skip=" + skip,
+            success: function (res){
+                $('#productRow').append(res)
+                skip += 4
+
+                if (skip >= $('#productsCount').val()){
+                    $('#loadMoreAnim').remove()
+                    $('#productRow').append(emptyProduct)
+                }
+            }
+        })
+    })
     
     // HEADER
 

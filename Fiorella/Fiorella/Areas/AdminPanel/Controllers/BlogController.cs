@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models;
@@ -8,64 +7,65 @@ using Microsoft.EntityFrameworkCore;
 namespace Fiorella.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
-    public class ProductController : Controller
+    public class BlogController : Controller
     {
         private readonly AppDbContext _dbContext;
 
-        public ProductController(AppDbContext dbContext)
+        public BlogController(AppDbContext dbContext)
         {
             this._dbContext = dbContext;
         }
         
         public async Task<IActionResult> Index()
         {
-            var products = await this._dbContext.Products.Include(x=>x.Category).ToListAsync();
+            var blogs = await this._dbContext.Blogs.ToListAsync();
             
-            return View(products);
+            return View(blogs);
         }
 
-        public async Task<IActionResult> Detail(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return BadRequest();
             }
 
-            var product = await this._dbContext.Products.Include(x=>x.Category).Where(x=>x.Id == id).FirstOrDefaultAsync();
+            var blog = await this._dbContext.Blogs.FirstOrDefaultAsync(x => x.id == id);
 
-            if (product == null)
+            if (blog == null)
             {
                 return NotFound();
             }
             
-            return View(product);
+            return View(blog);
         }
 
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public async Task<IActionResult> Create(Blog blog)
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return BadRequest();
             }
 
-            var isExistProduct =
-                await this._dbContext.Products.AnyAsync(x => x.Name.ToLower().Trim() == product.Name.ToLower().Trim());
+            var isExistBlog = await this._dbContext.Blogs.AnyAsync(x =>
+                x.Title.Trim().ToLower() == blog.Title.Trim().ToLower());
 
-            if (isExistProduct)
+            if (isExistBlog)
             {
-                ModelState.AddModelError("Name", "The Product with this name is already exist");
+                ModelState.AddModelError("Title", "The Blog List with this title is already exist.");
                 return View();
             }
 
-            await this._dbContext.AddAsync(product);
+            await this._dbContext.AddAsync(blog);
             await this._dbContext.SaveChangesAsync();
-            
+
             return RedirectToAction(nameof(Index));
         }
     }

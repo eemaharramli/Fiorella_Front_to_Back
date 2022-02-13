@@ -24,6 +24,7 @@ namespace Fiorella.Controllers
         
         public IActionResult Index()
         {
+            ViewBag.basketTotalCount = 0;
             HttpContext.Session.SetString("session", "session value");
 
             Response.Cookies.Append("cookies", "cookie value", new CookieOptions{Expires = DateTimeOffset.Now.AddHours(1)});
@@ -101,15 +102,14 @@ namespace Fiorella.Controllers
                 });
             }
             
+            
             basket = JsonConvert.SerializeObject(newBasket);
             Response.Cookies.Append("basket", basket);
-            
-            
-            // return Json(newBasket);
+
             return View(newBasket);
         }
 
-        public async Task<IActionResult> AddToBasket(int id)
+        public async Task<IActionResult> AddToBasket(int? id)
         {
             if (id == null)
             {
@@ -152,8 +152,10 @@ namespace Fiorella.Controllers
 
             var basket = JsonConvert.SerializeObject(basketViewModels);
             Response.Cookies.Append("basket", basket);
-            
-            
+
+
+            // return Json(basketViewModels);
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -198,6 +200,15 @@ namespace Fiorella.Controllers
                 existBasketViewModel.Count++;
                 existBasketViewModel.Price += existBasketViewModel.Price;
             }
+
+            double totalCount = 0;
+            
+            foreach (var item in basketViewModels)
+            {
+                totalCount += item.Price * item.Count;
+            }
+
+            ViewData["totalCount"] = totalCount;
             
             var basket = JsonConvert.SerializeObject(basketViewModels);
             Response.Cookies.Append("basket", basket);
@@ -245,9 +256,11 @@ namespace Fiorella.Controllers
             {
                 existBasketViewModel.Count--;
                 existBasketViewModel.Price -= existBasketViewModel.Price;
+                ViewBag.basketTotalCount -= existBasketViewModel.Price;
             }
             
             var basket = JsonConvert.SerializeObject(basketViewModels);
+            
             Response.Cookies.Append("basket", basket);
             
             return RedirectToAction(nameof(Basket));

@@ -23,22 +23,25 @@ namespace Fiorella.ViewComponents
         {
             var count = 0;
             double price = 0;
-            double total = 0;
             var basket = Request.Cookies["basket"];
+            
             if (!string.IsNullOrEmpty(basket))
             {
                 var products = JsonConvert.DeserializeObject<List<BasketViewModel>>(basket);
                 count = products.Count;
+                
                 foreach (var item in products)
                 {
                     price += item.Price * item.Count;
                 }
+                ViewBag.BasketCount = count;
+                ViewBag.Total = price;
             }
             
             /////////???????????????????????? price problem
 
-            ViewBag.BasketCount = count;
-            ViewBag.Total = price;
+            
+            
             
             var bio = await this._dbContext.Bios.SingleOrDefaultAsync();
             

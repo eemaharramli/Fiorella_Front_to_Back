@@ -27,12 +27,12 @@
                 <td> @item.Name </td>
                 <td> $ @item.Price </td>
                 <td>
-                  <a class="btn btn-success" asp-controller="Product" asp-action="Create" > Create </a>
                   <a class="btn btn-warning" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"> Detail </a>
                   <a class="btn btn-danger"> Delete </a>
                 </td>
               </tr>
             }
+            <a class="btn btn-success" asp-controller="Product" asp-action="Create" > Create </a>
             </tbody>
           </table>
         </div>

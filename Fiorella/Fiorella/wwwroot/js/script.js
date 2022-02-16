@@ -44,7 +44,7 @@ $(document).ready(function () {
                     price += element.price * element.count;
                 })
                 $('#basketTotalPrice').text('CART ( $' + price + ')')
-                $("#basketTotalPrice").text("CART (" + $("#basket-total-price-bottom").text() + ")");
+                console.log($('#basket-total-price-bottom'))
             }
         })
     })

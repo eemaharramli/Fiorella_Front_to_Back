@@ -215,7 +215,7 @@ namespace Fiorella.Controllers
                 totalCount += item.Price * item.Count;
             }
 
-            ViewData["totalCount"] = totalCount;
+            ViewData["totalPrice"] = totalCount;
             
             var basket = JsonConvert.SerializeObject(basketViewModels);
             Response.Cookies.Append("basket", basket);
@@ -253,8 +253,12 @@ namespace Fiorella.Controllers
             {
                 return NotFound();
             }
+
+            if (existBasketViewModel.Count > 1)
+            {
+                existBasketViewModel.Count--;
+            }
             
-            existBasketViewModel.Count--;
 
             var basket = JsonConvert.SerializeObject(basketViewModels);
             
@@ -267,7 +271,7 @@ namespace Fiorella.Controllers
                 totalCount += item.Price * item.Count;
             }
             
-            ViewData["totalCount"] = totalCount;
+            ViewData["totalPrice"] = totalCount;
 
             return PartialView("_BasketPartial", basketViewModels);
         }

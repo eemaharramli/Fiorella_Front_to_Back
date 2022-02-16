@@ -28,6 +28,11 @@ namespace Fiorella.ViewComponents
             if (!string.IsNullOrEmpty(basket))
             {
                 var products = JsonConvert.DeserializeObject<List<BasketViewModel>>(basket);
+                if (products == null)
+                {
+                    products = new List<BasketViewModel>();
+                }
+                
                 count = products.Count;
                 
                 foreach (var item in products)
@@ -37,12 +42,7 @@ namespace Fiorella.ViewComponents
                 ViewBag.BasketCount = count;
                 ViewBag.Total = price;
             }
-            
-            /////////???????????????????????? price problem
 
-            
-            
-            
             var bio = await this._dbContext.Bios.SingleOrDefaultAsync();
             
             return View(bio);

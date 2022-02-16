@@ -73,8 +73,7 @@ namespace Fiorella.Controllers
 
             return PartialView("_SearchedProductPartial", products);
         }
-
-
+        
         public async Task<IActionResult> Basket()
         {
             var basket = Request.Cookies["basket"];
@@ -98,14 +97,22 @@ namespace Fiorella.Controllers
                     Name = product.Name,
                     Image = product.Image,
                     Count = basketViewModel.Count,
-                    Price = product.Price * basketViewModel.Count,
+                    Price = product.Price,
                 });
             }
-            
-            
+
             basket = JsonConvert.SerializeObject(newBasket);
             Response.Cookies.Append("basket", basket);
 
+            double totalPrice = 0;
+
+            foreach (var item in newBasket)
+            {
+                totalPrice += item.Price * item.Count;
+            }
+
+            ViewData["totalPrice"] = totalPrice;
+            
             return View(newBasket);
         }
 
@@ -136,13 +143,17 @@ namespace Fiorella.Controllers
             }
 
             var existBasketViewModel = basketViewModels.FirstOrDefault(x => x.Id == id);
-            var productPrice = product.Price;
+            
             if (existBasketViewModel == null)
             {
                 existBasketViewModel = new BasketViewModel
                 {
-                    Id = product.Id
+                    Id = product.Id,
+                    Name = product.Name,
+                    Image = product.Image,
+                    Price = product.Price
                 };
+                
                 basketViewModels.Add(existBasketViewModel);
             }
             else
@@ -153,10 +164,7 @@ namespace Fiorella.Controllers
             var basket = JsonConvert.SerializeObject(basketViewModels);
             Response.Cookies.Append("basket", basket);
 
-
-            // return Json(basketViewModels);
-
-            return RedirectToAction(nameof(Index));
+            return Json(basketViewModels);
         }
 
         public async Task<IActionResult> AddProductCount(int? id)
@@ -198,7 +206,6 @@ namespace Fiorella.Controllers
             else
             {
                 existBasketViewModel.Count++;
-                existBasketViewModel.Price += existBasketViewModel.Price;
             }
 
             double totalCount = 0;
@@ -212,8 +219,8 @@ namespace Fiorella.Controllers
             
             var basket = JsonConvert.SerializeObject(basketViewModels);
             Response.Cookies.Append("basket", basket);
-            
-            return RedirectToAction(nameof(Basket));
+
+            return PartialView("_BasketPartial", basketViewModels);
         }
 
         public async Task<IActionResult> RemoveProductCount(int? id)
@@ -244,26 +251,25 @@ namespace Fiorella.Controllers
             var existBasketViewModel = basketViewModels.FirstOrDefault(x => x.Id == id);
             if (existBasketViewModel == null)
             {
-                basketViewModels.Add(new BasketViewModel
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Image = product.Image,
-                    Price = product.Price
-                });
-            }
-            else
-            {
-                existBasketViewModel.Count--;
-                existBasketViewModel.Price -= existBasketViewModel.Price;
-                ViewBag.basketTotalCount -= existBasketViewModel.Price;
+                return NotFound();
             }
             
+            existBasketViewModel.Count--;
+
             var basket = JsonConvert.SerializeObject(basketViewModels);
             
             Response.Cookies.Append("basket", basket);
             
-            return RedirectToAction(nameof(Basket));
+            double totalCount = 0;
+            
+            foreach (var item in basketViewModels)
+            {
+                totalCount += item.Price * item.Count;
+            }
+            
+            ViewData["totalCount"] = totalCount;
+
+            return PartialView("_BasketPartial", basketViewModels);
         }
     }
 }

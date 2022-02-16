@@ -5,11 +5,6 @@
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
-    double totalPrice = 0;
-    foreach (var item in Model)
-    {
-        totalPrice += item.Price;
-    }
 }
 
 <section>
@@ -25,26 +20,10 @@
                     <th scope="col">Product Image</th>
                 </tr>
                 </thead>
-                <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr data-id="@item.Id">
-                        <td scope="row" style="vertical-align:middle !important;" id="productId">@item.Id</td>
-                        <td style="vertical-align:middle !important;">@item.Name</td>
-                        <td style="vertical-align:middle !important;" id="productPrice">@item.Price</td>
-                        <td style="vertical-align:middle !important;" id="productCount">@item.Count</td>
-                        <td style="vertical-align:middle !important;"><img src="~/img/@item.Image" alt="" style="max-width: 100px"></td>
-                        <td style="vertical-align:middle !important;">
-                            <a id="addMoreProduct" asp-controller="Home" asp-action="AddProductCount" asp-route-id="@item.Id" data-id="@item.Id">+</a>
-                            <a id="removeProduct" asp-controller="Home" asp-action="RemoveProductCount" asp-route-id="@item.Id">-</a>
-                        </td>
-                    </tr>
-                }
+                <tbody id="basketList">
+                <partial name="_BasketPartial" model="Model"/>
                 </tbody>
             </table>
-        </div>
-        <div class="row justify-content-center">
-            <h2>Total price: <span>@totalPrice$</span></h2>
         </div>
     </div>
 </section>

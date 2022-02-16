@@ -1,0 +1,26 @@
+@using Fiorella.Models.ViewModels
+@model List<BasketViewModel>
+
+
+@foreach (var item in Model)
+{
+    <tr data-id="@item.Id">
+        <td scope="row" style="vertical-align:middle !important;" id="productId">@item.Id</td>
+        <td style="vertical-align:middle !important;">@item.Name</td>
+        <td style="vertical-align:middle !important;" id="productPrice">@item.Price</td>
+        <td style="vertical-align:middle !important;" id="productCount">@item.Count</td>
+        <td style="vertical-align:middle !important;"><img src="~/img/@item.Image" alt="" style="max-width: 100px"></td>
+        <td style="vertical-align:middle !important;">
+            <a class="btn btn-success" id="addMoreProduct" asp-controller="Home" asp-action="AddProductCount" asp-route-id="@item.Id" data-id="@item.Id">+</a>
+            <a class="btn btn-danger" id="removeProduct" asp-controller="Home" asp-action="RemoveProductCount" asp-route-id="@item.Id" data-id="@item.Id">-</a>
+        </td>
+    </tr>
+}
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><strong>TOTAL: </strong></td>
+    <td><strong id="basket-total-price-bottom">$@ViewData["totalCount"]</strong></td>
+</tr>

@@ -26,7 +26,6 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             var products = await this._dbContext.Products.Include(x => x.Category).Skip((page - 1) / 2).Take(2)
                 .ToListAsync();
 
-            // var products = await this._dbContext.Products.Include(x=>x.Category).ToListAsync();
             return View(products);
         }
 

@@ -36,35 +36,48 @@
               </tbody>
             </table>
           </div>
-          <div class="d-flex mt-4 flex-wrap">
-            <nav class="ml-auto">
-              <ul class="pagination separated pagination-info">
-                <li class="page-item">
-                  <a href="#" class="page-link">
-                    <i class="icon-arrow-left"></i>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link">2</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link">3</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link">4</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link">
-                    <i class="icon-arrow-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+          
         </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="d-flex mt-4 flex-wrap">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-end">
+            @if (ViewBag.currentPage == 1)
+            {
+              <li class="page-item disabled">
+                <a class="page-link" tabindex="-1">Previous</a>
+              </li>
+            }
+            else
+            {
+              <li class="page-item">
+                <a class="page-link" tabindex="-1" asp-controller="Product" asp-action="Index" asp-route-page="@(ViewBag.currentPage-1)">Previous</a>
+              </li>
+            }
+            @for (int i = 1; i <= ViewBag.totalPage; i++)
+            {
+              <li class="page-item @(ViewBag.currentPage == i ? "active" : "")" style="@(ViewBag.currentPage == i ? "pointer-events:none" : "")">
+                <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-page="@i">
+                  @i<span class="sr-only">(current)</span>
+                </a>
+              </li>
+            }
+            @if (ViewBag.currentPage == ViewBag.totalPage)
+            {
+              <li class="page-item disabled">
+                <a class="page-link">Next</a>
+              </li>
+            }
+            else
+            {
+              <li class="page-item">
+                <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-page="@(ViewBag.currentPage + 1)">Next</a>
+              </li>
+            }
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

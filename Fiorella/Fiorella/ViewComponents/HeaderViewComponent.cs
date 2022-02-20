@@ -21,7 +21,7 @@ namespace Fiorella.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var count = 0;
+            int count = 0;
             double price = 0;
             var basket = Request.Cookies["basket"];
             

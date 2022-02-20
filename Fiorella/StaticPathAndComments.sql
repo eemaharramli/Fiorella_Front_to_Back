@@ -155,5 +155,3 @@ set
 Description = 'Lorem ipsum';
 
 
-select *
-from Products;

@@ -44,7 +44,7 @@ namespace Fiorella.ViewComponents
             }
 
             var bio = await this._dbContext.Bios.SingleOrDefaultAsync();
-            
+
             return View(bio);
         }
     }

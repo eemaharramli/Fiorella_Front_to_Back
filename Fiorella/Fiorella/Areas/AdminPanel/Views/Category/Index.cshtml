@@ -26,12 +26,12 @@
                                     <td> @item.Name </td>
                                     <td> @item.Description </td>
                                     <td>
-                                        <a class="btn btn-success" asp-controller="Category" asp-action="Create"> Create Category </a>
                                         <a class="btn btn-warning" asp-controller="Category" asp-action="Details" asp-route-id="@item.Id"> Details </a>
                                         <a class="btn btn-danger"> Delete </a>
                                     </td>
                                 </tr>
                             }
+                            <a class="btn btn-success" asp-controller="Category" asp-action="Create"> Create Category </a>
                             </tbody>
                         </table>
                     </div>

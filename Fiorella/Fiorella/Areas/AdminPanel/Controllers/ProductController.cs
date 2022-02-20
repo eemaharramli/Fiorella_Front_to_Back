@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Fiorella.DataAccessLayer;
@@ -17,10 +18,15 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             this._dbContext = dbContext;
         }
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var products = await this._dbContext.Products.Include(x=>x.Category).ToListAsync();
-            
+            ViewBag.totalPage = Math.Ceiling((decimal)this._dbContext.Products.Count() / 2);
+            ViewBag.currentPage = page;
+
+            var products = await this._dbContext.Products.Include(x => x.Category).Skip((page - 1) / 2).Take(2)
+                .ToListAsync();
+
+            // var products = await this._dbContext.Products.Include(x=>x.Category).ToListAsync();
             return View(products);
         }
 

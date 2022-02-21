@@ -26,7 +26,6 @@ namespace Fiorella.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Details(int? id)
         {
-
             if (id == null)
             {
                 return BadRequest();
@@ -134,14 +133,43 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-        
-        
-        
-
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            
+            var category = await this._dbContext.Categories.FindAsync(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+            
+            return View(category);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteCategory(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await this._dbContext.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return BadRequest();
+            }
+
+            this._dbContext.Categories.Remove(category);
+            await this._dbContext.SaveChangesAsync();
+            
+            return RedirectToAction(nameof(Index));
         }
     }
 }

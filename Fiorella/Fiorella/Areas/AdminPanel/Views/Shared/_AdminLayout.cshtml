@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="~/admin/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/admin/images/favicon.png" />
+    
+    @await RenderSectionAsync("Styles", false)
+    
   </head>
   <body>
   <div class="container-scroller"/>
@@ -196,9 +199,6 @@
               <li class="nav-item">
                 <a class="nav-link" asp-controller="Blog" asp-action="Index">Blog List</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" >Add new Product</a>
-              </li>
             </ul>
           </div>
         </li>
@@ -277,7 +277,8 @@
   <!-- Custom js for this page -->
   <script src="~/admin/js/dashboard.js"></script>
   <!-- End custom js for this page -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  @await RenderSectionAsync("Scripts", false)
+
   </body>
 </html>

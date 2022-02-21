@@ -70,5 +70,78 @@ namespace Fiorella.Areas.AdminPanel.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await this._dbContext.Categories.FindAsync(id);
+
+            if (category == null)
+            {
+                return BadRequest();
+            }
+            
+            return View(category);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Category category)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            if (id != category.Id)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var existCategory = await this._dbContext.Categories.FindAsync(id);
+
+            if (existCategory == null)
+            {
+                return NotFound();
+            }
+
+            var isExist =
+                await this._dbContext.Categories.AnyAsync(
+                    x => x.Name.Trim().ToLower() == category.Name.Trim().ToLower() &&
+                                 x.Id != id);
+
+            if (isExist)
+            {
+                ModelState.AddModelError("Name", "There is already Category with the same name");
+                return View();
+            }
+
+            existCategory.Name = category.Name;
+            existCategory.Description = category.Description;
+            
+            await this._dbContext.SaveChangesAsync();
+
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        
+        
+        
+
+        public IActionResult Delete(int? id)
+        {
+            return View();
+        }
     }
 }

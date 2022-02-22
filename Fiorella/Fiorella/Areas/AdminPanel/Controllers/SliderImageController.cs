@@ -76,21 +76,22 @@ namespace Fiorella.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Create(SliderImage sliderImage)
         {
+            int totalCountForSlideImages = 5;
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
+            var existSliderImagesCount = await this._dbContext.SliderImages.CountAsync();
+            if(existSliderImagesCount + sliderImage.Photos.Length > totalCountForSlideImages)
+            {
+                ModelState.AddModelError("Photos", $"Total count of images for Slide is {totalCountForSlideImages}. Delete some old images to add new.");
+                return View();
+            }
+            
             foreach (var image in sliderImage.Photos)
             {
-                var existSliderImagesCount = this._dbContext.SliderImages.Count();
-                
-                if (existSliderImagesCount >= 5)
-                {
-                    ModelState.AddModelError("Photos", "To add more images delete old images first");
-                    return View();
-                }
-                
+
                 if (!image.IsImage())
                 {
                     ModelState.AddModelError("Photos", $"{image.Name} - You must upload an image");

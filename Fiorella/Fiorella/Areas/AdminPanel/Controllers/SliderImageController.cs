@@ -16,10 +16,10 @@ namespace Fiorella.Areas.AdminPanel.Controllers
         private readonly AppDbContext _dbContext;
         private readonly IWebHostEnvironment _environment;
 
-        public SliderImageController(AppDbContext dbContext)
+        public SliderImageController(AppDbContext dbContext, IWebHostEnvironment environment)
         {
             this._dbContext = dbContext;
-            this._environment = _environment;
+            this._environment = environment;
         }
         
         public async Task<IActionResult> Index()
@@ -35,6 +35,7 @@ namespace Fiorella.Areas.AdminPanel.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SliderImage sliderImage)
         {
             if (!ModelState.IsValid)
@@ -54,15 +55,54 @@ namespace Fiorella.Areas.AdminPanel.Controllers
                 return View();
             }
 
-            var webRootPath = _environment.WebRootPath;
+            var webRootPath = this._environment.WebRootPath;
             var fileName = $"{Guid.NewGuid()}_{sliderImage.Photo.FileName}";
-            var path = Path.Combine(webRootPath, "image", fileName);
-
+            var path = Path.Combine(webRootPath, "img", fileName);
             var fileStream = new FileStream(path, FileMode.CreateNew);
+            
             await sliderImage.Photo.CopyToAsync(fileStream);
 
             sliderImage.SliderImageName = fileName;
             await this._dbContext.SliderImages.AddAsync(sliderImage);
+            await this._dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var sliderImage = await this._dbContext.SliderImages.FindAsync(id);
+            
+            if (sliderImage == null)
+            {
+                return NotFound();
+            }
+            
+            return View(sliderImage);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteCategory(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var sliderImage = await this._dbContext.SliderImages.FindAsync(id);
+            if (sliderImage == null)
+            {
+                return BadRequest();
+            }
+
+            this._dbContext.SliderImages.Remove(sliderImage);
             await this._dbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));

@@ -172,3 +172,4 @@
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/Shared/_ValidationPartial.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/SliderImage/Index.cshtml.g.cs
 /Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/SliderImage/Create.cshtml.g.cs
+/Users/elnur/Desktop/Fiorella_Front_to_Back/Fiorella/Fiorella/obj/Debug/net5.0/Razor/Areas/AdminPanel/Views/SliderImage/Delete.cshtml.g.cs

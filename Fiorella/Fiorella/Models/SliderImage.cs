@@ -10,7 +10,11 @@ namespace Fiorella.Models
         public string SliderImageName { get; set; }
         
         [NotMapped]
-        [Required]
+        // [Required]
         public IFormFile Photo { get; set; }
+
+        [NotMapped]
+        [Required]
+        public IFormFile[] Photos { get; set; }
     }
 }

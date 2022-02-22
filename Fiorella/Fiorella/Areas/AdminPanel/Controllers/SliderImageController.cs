@@ -1,6 +1,8 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using Fiorella.Areas.AdminPanel.Data;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +38,42 @@ namespace Fiorella.Areas.AdminPanel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Create(SliderImage sliderImage)
+        // {
+        //     var existSliderImagesCount = this._dbContext.SliderImages.Count();
+        //
+        //     if (existSliderImagesCount >= 5)
+        //     {
+        //         ModelState.AddModelError("Photo", "To add more images delete old images first");
+        //         return View();
+        //     }
+        //     
+        //     if (!ModelState.IsValid)
+        //     {
+        //         return View();
+        //     }
+        //
+        //     if (!sliderImage.Photo.IsImage())
+        //     {
+        //         ModelState.AddModelError("Photo", "You must upload an image");
+        //         return View();
+        //     }
+        //
+        //     if (!sliderImage.Photo.IsAllowedSize(2))
+        //     {
+        //         ModelState.AddModelError("Photo", "The picture size must be not more than 2048 kb");
+        //         return View();
+        //     }
+        //
+        //     var fileName = await sliderImage.Photo.GenerateFile(Constants.ImageFolderPath);
+        //
+        //     sliderImage.SliderImageName = fileName;
+        //     await this._dbContext.SliderImages.AddAsync(sliderImage);
+        //     await this._dbContext.SaveChangesAsync();
+        //
+        //     return RedirectToAction(nameof(Index));
+        // }
+
         public async Task<IActionResult> Create(SliderImage sliderImage)
         {
             if (!ModelState.IsValid)
@@ -43,32 +81,38 @@ namespace Fiorella.Areas.AdminPanel.Controllers
                 return View();
             }
 
-            if (!sliderImage.Photo.ContentType.Contains("image"))
+            foreach (var image in sliderImage.Photos)
             {
-                ModelState.AddModelError("Photo", "You must upload an image");
-                return View();
-            }
+                var existSliderImagesCount = this._dbContext.SliderImages.Count();
+                
+                if (existSliderImagesCount >= 5)
+                {
+                    ModelState.AddModelError("Photos", "To add more images delete old images first");
+                    return View();
+                }
+                
+                if (!image.IsImage())
+                {
+                    ModelState.AddModelError("Photos", $"{image.Name} - You must upload an image");
+                    return View();
+                }
+        
+                if (!image.IsAllowedSize(2))
+                {
+                    ModelState.AddModelError("Photos", $"{image.Name} - The picture size must be not more than 2048 kb");
+                    return View();
+                }
+        
+                var fileName = await image.GenerateFile(Constants.ImageFolderPath);
 
-            if (sliderImage.Photo.Length > 4096 * 1000)
-            {
-                ModelState.AddModelError("Photo", "The picture size must be not more than 2048 kb");
-                return View();
+                var newSliderImage = new SliderImage {SliderImageName = fileName};
+                await this._dbContext.SliderImages.AddAsync(newSliderImage);
+                await this._dbContext.SaveChangesAsync();
             }
-
-            var webRootPath = this._environment.WebRootPath;
-            var fileName = $"{Guid.NewGuid()}_{sliderImage.Photo.FileName}";
-            var path = Path.Combine(webRootPath, "img", fileName);
-            var fileStream = new FileStream(path, FileMode.CreateNew);
             
-            await sliderImage.Photo.CopyToAsync(fileStream);
-
-            sliderImage.SliderImageName = fileName;
-            await this._dbContext.SliderImages.AddAsync(sliderImage);
-            await this._dbContext.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
         }
-
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -80,7 +124,7 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             
             if (sliderImage == null)
             {
-                return NotFound();
+                return PartialView("_NotFoundPartial");
             }
             
             return View(sliderImage);
@@ -89,20 +133,98 @@ namespace Fiorella.Areas.AdminPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public async Task<IActionResult> DeleteCategory(int? id)
+        public async Task<IActionResult> DeleteSliderImage(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return PartialView("_NotFoundPartial");
             }
 
-            var sliderImage = await this._dbContext.SliderImages.FindAsync(id);
+            var existSliderImage = await this._dbContext.SliderImages.FindAsync(id);
+
+            if (existSliderImage == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            var path = Path.Combine(Constants.ImageFolderPath, existSliderImage.SliderImageName);
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+            
+            this._dbContext.Remove(existSliderImage);
+            await this._dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+        
+        //GET
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            var sliderImage = await this._dbContext.SliderImages.FirstOrDefaultAsync(x => x.Id == id);
             if (sliderImage == null)
             {
-                return BadRequest();
+                return PartialView("_NotFoundPartial");
             }
 
-            this._dbContext.SliderImages.Remove(sliderImage);
+            return View(sliderImage);
+        }
+        
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, SliderImage sliderImage)
+        {
+            if (id == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            if (id != sliderImage.Id)
+            {
+                return PartialView("_InternalErrorPartial");
+            }
+
+            var existSliderImage = await this._dbContext.SliderImages.FindAsync(id);
+
+            if (existSliderImage == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(sliderImage);
+            }
+            
+            if (!sliderImage.Photo.IsImage())
+            {
+                ModelState.AddModelError("Photo", "You must upload an image");
+                return View(sliderImage);
+            }
+
+            if (!sliderImage.Photo.IsAllowedSize(2))
+            {
+                ModelState.AddModelError("Photo", "Your image must be less than 2mb");
+                return View(sliderImage);
+            }
+
+            var path = Path.Combine(Constants.ImageFolderPath, existSliderImage.SliderImageName);
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+
+            var fileName = await sliderImage.Photo.GenerateFile(Constants.ImageFolderPath);
+            existSliderImage.SliderImageName = fileName;
             await this._dbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));

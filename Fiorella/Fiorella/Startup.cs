@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Fiorella.Areas.AdminPanel.Data;
 using Fiorella.DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,10 +19,12 @@ namespace Fiorella
     public class Startup
     {
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             this._configuration = configuration;
+            this._webHostEnvironment = webHostEnvironment;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -43,6 +47,7 @@ namespace Fiorella
             });
 
             services.AddMvc().AddNewtonsoftJson(x=>x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            Constants.ImageFolderPath = Path.Combine(this._webHostEnvironment.WebRootPath, "img");
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

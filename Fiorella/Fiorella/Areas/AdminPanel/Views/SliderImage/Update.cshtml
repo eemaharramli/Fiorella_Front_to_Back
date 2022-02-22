@@ -1,0 +1,31 @@
+@model SliderImage
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "_AdminLayout";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Update Slider Image</h4>
+                <img src="~/img/@Model.SliderImageName" alt="@Model.SliderImageName" style="width: 150px; height: 150px; border-radius: 100%;" class="mb-2">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Photo">Photo</label>
+                        <input class="form-control" asp-for="Photo" accept="image/*">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Update</button>
+                    <a class="btn btn-light" asp-controller="SliderImage" asp-action="Index">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationPartial"/>
+}

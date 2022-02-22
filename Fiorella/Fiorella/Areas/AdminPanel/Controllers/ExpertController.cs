@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Fiorella.Areas.AdminPanel.Data;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,7 @@ namespace Fiorella.Areas.AdminPanel.Controllers
 
             if (experts == null)
             {
-                return NotFound();
+                return PartialView("_NotFoundPartial");
             }
 
             return View(experts);
@@ -40,14 +41,14 @@ namespace Fiorella.Areas.AdminPanel.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return PartialView("_NotFoundPartial");
             }
 
             var expert = await this._dbContext.Experts.FindAsync(id);
 
             if (expert == null)
             {
-                return BadRequest();
+                return PartialView("_InternalErrorPartial");
             }
 
             return View(expert);
@@ -60,25 +61,48 @@ namespace Fiorella.Areas.AdminPanel.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return PartialView("_NotFoundPartial");
             }
 
             if (id != expert.Id)
             {
-                return BadRequest();
+                return PartialView("_InternalErrorPartial");
             }
-
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-
+            
             var existExpert = await this._dbContext.Experts.FindAsync(id);
 
             if (existExpert == null)
             {
-                return NotFound();
+                return PartialView("_NotFoundPartial");
             }
+            
+            if (!ModelState.IsValid)
+            {
+                return View(existExpert);
+            }
+            
+            if (!expert.Photo.IsImage())
+            {
+                ModelState.AddModelError("Photo", "You must upload an image");
+                return View(existExpert);
+            }
+
+            if (!expert.Photo.IsAllowedSize(2))
+            {
+                ModelState.AddModelError("Photo", "Your image must be less than 2mb");
+                return View(existExpert);
+            }
+
+            var path = Path.Combine(Constants.ImageFolderPath, existExpert.Image);
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+
+            var fileName = await expert.Photo.GenerateFile(Constants.ImageFolderPath);
+
+            expert.Image = fileName;
 
             var isExistExpert = await this._dbContext.Experts.AnyAsync(
                 x => x.Fullname.Trim().ToLower() == expert.Fullname.Trim().ToLower() && 
@@ -87,7 +111,7 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             if (isExistExpert)
             {
                 ModelState.AddModelError("Fullname", $"There is already Expert with name {expert.Fullname}");
-                return View();
+                return View(existExpert);
             }
 
             existExpert.Fullname = expert.Fullname;
@@ -170,6 +194,18 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             {
                 return View();
             }
+
+            if (!expert.Photo.IsImage())
+            {
+                ModelState.AddModelError("Photo", "You must upload an image");
+                return View();
+            }
+
+            if (!expert.Photo.IsAllowedSize(2))
+            {
+                ModelState.AddModelError("Photo", "The image size must be less than 2mb");
+                return View();
+            }
             
             var isExistExpert =
                 await this._dbContext.Experts.AnyAsync(x => x.Fullname.ToLower().Trim() == expert.Fullname.ToLower().Trim());
@@ -180,12 +216,7 @@ namespace Fiorella.Areas.AdminPanel.Controllers
                 return View();
             }
 
-            var webRootPath = this._environment.WebRootPath;
-            var fileName = $"{Guid.NewGuid()}_{expert.Photo.FileName}";
-            var path = Path.Combine(webRootPath, "img", fileName);
-            var fileStream = new FileStream(path, FileMode.CreateNew);
-            
-            await expert.Photo.CopyToAsync(fileStream);
+            var fileName = await expert.Photo.GenerateFile(Constants.ImageFolderPath);
 
             expert.Image = fileName;
             await this._dbContext.Experts.AddAsync(expert);

@@ -27,7 +27,7 @@
                                         <img src="~/img/@item.SliderImageName" alt="@item.SliderImageName" style="width: 150px; height: 150px; border-radius: 100%">
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary"> Update </a>
+                                        <a class="btn btn-primary" asp-controller="SliderImage" asp-action="Update" asp-route-id="@item.Id"> Update </a>
                                         <a class="btn btn-danger" asp-controller="SliderImage" asp-action="Delete" asp-route-id="@item.Id"> Delete </a>
                                     </td>
                                 </tr>

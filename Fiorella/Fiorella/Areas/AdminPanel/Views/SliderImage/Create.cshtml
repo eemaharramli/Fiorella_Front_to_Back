@@ -12,9 +12,12 @@
         <h4 class="card-title">Create Slider Image</h4>
         <form class="forms-sample" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <label asp-for="Photo">Photo</label>
-            <input class="form-control" asp-for="Photo" accept="image/*">
-            <span asp-validation-for="Photo" class="text-danger"></span>
+            @* <label asp-for="Photo">Photo</label> *@
+            @* <input class="form-control" asp-for="Photo" accept="image/*"> *@
+            @* <span asp-validation-for="Photo" class="text-danger"></span> *@
+            <label asp-for="Photos">Photo</label>
+            <input class="form-control" asp-for="Photos" accept="image/*">
+            <span asp-validation-for="Photos" class="text-danger"></span>
           </div>
           <button type="submit" class="btn btn-primary mr-2">Choose</button>
           <a class="btn btn-light" asp-controller="SliderImage" asp-action="Index">Cancel</a>

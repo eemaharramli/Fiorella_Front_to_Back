@@ -1,0 +1,42 @@
+@model List<Expert>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="main-panel">
+    <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Blog List</h4>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Expert Name</th>
+                            <th>Expert Image</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Fullname</td>
+                                <td><img src="~/img/@item.Image" alt="@item.Image"></td>
+                                <td>
+                                    <a class="btn btn-primary" asp-controller="Expert" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                                    <a class="btn btn-warning" asp-controller="Expert" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                                    <a class="btn btn-danger" asp-controller="Expert" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                        <a class="btn btn-success" asp-controller="Expert" asp-action="Create" >Create new Expert</a>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -73,5 +73,45 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await this._dbContext.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            return View(product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+
+        public async Task<IActionResult> DeleteProduct(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await this._dbContext.Products.FindAsync(id);
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            this._dbContext.Products.Remove(product);
+            await this._dbContext.SaveChangesAsync();
+            
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -128,8 +128,7 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             existCategory.Description = category.Description;
             
             await this._dbContext.SaveChangesAsync();
-        
-        
+
             return RedirectToAction(nameof(Index));
         }
 

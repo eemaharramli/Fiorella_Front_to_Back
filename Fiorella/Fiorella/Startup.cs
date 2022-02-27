@@ -45,7 +45,10 @@ namespace Fiorella
             
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(connectionString, builder =>
+                {
+                    builder.MigrationsAssembly(nameof(Fiorella));
+                });
             });
 
             services.AddIdentity<User, IdentityRole>(options =>

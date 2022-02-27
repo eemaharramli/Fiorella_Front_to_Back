@@ -4,10 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Fiorella.Areas.AdminPanel.Data;
+using Fiorella.Data;
 using Fiorella.DataAccessLayer;
+using Fiorella.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +32,6 @@ namespace Fiorella
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             // var connectionStringForWindows = this._configuration.GetConnectionString("ConnectionForWindows");
             //
             // services.AddDbContext<AppDbContext>(options =>
@@ -46,6 +48,27 @@ namespace Fiorella
                 options.UseSqlServer(connectionString);
             });
 
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                //Sign in
+                options.SignIn.RequireConfirmedAccount = false;
+                
+                //Password
+                options.Password.RequiredLength = 5;
+                options.Password.RequireDigit = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+
+                //Lockout
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
+                
+                //User
+                options.User.RequireUniqueEmail = true;
+
+            }).AddEntityFrameworkStores<AppDbContext>().AddErrorDescriber<IdentityErrorResult>().AddDefaultTokenProviders();
+
             services.AddMvc().AddNewtonsoftJson(x=>x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             Constants.ImageFolderPath = Path.Combine(this._webHostEnvironment.WebRootPath, "img");
         }
@@ -61,6 +84,10 @@ namespace Fiorella
             app.UseStaticFiles();
 
             app.UseSession();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
             
             app.UseEndpoints(endpoints =>
             {

@@ -3,12 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fiorella.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -22,10 +24,9 @@ namespace Fiorella.Areas.AdminPanel.Controllers
         {
             ViewBag.totalPage = Math.Ceiling((decimal)this._dbContext.Products.Count() / 2);
             ViewBag.currentPage = page;
-
-            var products = await this._dbContext.Products.Include(x => x.Category).Skip((page - 1) / 2).Take(2)
-                .ToListAsync();
-
+            
+            var products = await this._dbContext.Products.Include(x=>x.Category).Skip((page-1)*2).Take(2).ToListAsync();
+            
             return View(products);
         }
 

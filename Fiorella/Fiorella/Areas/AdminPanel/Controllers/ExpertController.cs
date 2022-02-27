@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Fiorella.Areas.AdminPanel.Data;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fiorella.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize]
     public class ExpertController : Controller
     {
         private readonly AppDbContext _dbContext;

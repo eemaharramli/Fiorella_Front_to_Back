@@ -2,12 +2,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fiorella.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize]
     public class DashboardController : Controller
     {
         private readonly AppDbContext _dbContext;

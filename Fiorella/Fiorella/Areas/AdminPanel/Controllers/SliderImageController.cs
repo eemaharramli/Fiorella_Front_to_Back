@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Fiorella.Areas.AdminPanel.Data;
 using Fiorella.DataAccessLayer;
 using Fiorella.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fiorella.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize]
     public class SliderImageController : Controller
     {
 
@@ -38,42 +40,6 @@ namespace Fiorella.Areas.AdminPanel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Create(SliderImage sliderImage)
-        // {
-        //     var existSliderImagesCount = this._dbContext.SliderImages.Count();
-        //
-        //     if (existSliderImagesCount >= 5)
-        //     {
-        //         ModelState.AddModelError("Photo", "To add more images delete old images first");
-        //         return View();
-        //     }
-        //     
-        //     if (!ModelState.IsValid)
-        //     {
-        //         return View();
-        //     }
-        //
-        //     if (!sliderImage.Photo.IsImage())
-        //     {
-        //         ModelState.AddModelError("Photo", "You must upload an image");
-        //         return View();
-        //     }
-        //
-        //     if (!sliderImage.Photo.IsAllowedSize(2))
-        //     {
-        //         ModelState.AddModelError("Photo", "The picture size must be not more than 2048 kb");
-        //         return View();
-        //     }
-        //
-        //     var fileName = await sliderImage.Photo.GenerateFile(Constants.ImageFolderPath);
-        //
-        //     sliderImage.SliderImageName = fileName;
-        //     await this._dbContext.SliderImages.AddAsync(sliderImage);
-        //     await this._dbContext.SaveChangesAsync();
-        //
-        //     return RedirectToAction(nameof(Index));
-        // }
-
         public async Task<IActionResult> Create(SliderImage sliderImage)
         {
             int totalCountForSlideImages = 5;

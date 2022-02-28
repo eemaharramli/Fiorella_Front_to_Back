@@ -45,7 +45,7 @@ namespace Fiorella.Data
             {
                 Fullname = "Admin",
                 UserName = "Admin",
-                Email = "elnur@maharramli.az"
+                Email = "admin@maharramli.az"
             };
 
             if (await this._userManager.FindByNameAsync(user.UserName) != null)

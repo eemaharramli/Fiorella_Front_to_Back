@@ -57,7 +57,7 @@
                       <label class="form-check-label text-muted">
                         <input type="checkbox" asp-for="KeepMeSignedIn" class="form-check-input"> Keep me signed in </label>
                     </div>
-                    <a asp-action="ForgotPassword" class="auth-link text-black">Forgot password?</a>
+                    <a asp-controller="Account" asp-action="ForgotPassword" class="auth-link text-black">Forgot password?</a>
                   </div>
                   <div class="text-center mt-4 font-weight-light"> Don't have an account? <a class="text-primary" asp-controller="Account" asp-action="Register">Create</a>
                   </div>

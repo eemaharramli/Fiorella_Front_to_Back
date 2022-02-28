@@ -54,7 +54,7 @@ namespace Fiorella
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 //Sign in
-                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedAccount = true;
                 
                 //Password
                 options.Password.RequiredLength = 5;
@@ -71,6 +71,11 @@ namespace Fiorella
                 options.User.RequireUniqueEmail = true;
 
             }).AddEntityFrameworkStores<AppDbContext>().AddErrorDescriber<IdentityErrorResult>().AddDefaultTokenProviders();
+
+            services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromMinutes(2);
+            });
 
             services.AddMvc().AddNewtonsoftJson(x=>x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             Constants.ImageFolderPath = Path.Combine(this._webHostEnvironment.WebRootPath, "img");

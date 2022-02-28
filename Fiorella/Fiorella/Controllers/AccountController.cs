@@ -188,8 +188,7 @@ namespace Fiorella.Controllers
                     client.Credentials = new NetworkCredential("codep320@gmail.com", "codeacademyp320");
                     client.Send(message);
                     TempData["confirm"] = true;
-
-                    // return RedirectToAction(nameof(ResetPassword), "Account");
+                    
                 }
 
                 return View("ForgotPasswordConfirmation");
@@ -199,7 +198,6 @@ namespace Fiorella.Controllers
         }
 
         [HttpGet]
-        // [ValidateAntiForgeryToken]
         public IActionResult ResetPassword(string token, string email)
         {
             if (!ModelState.IsValid)

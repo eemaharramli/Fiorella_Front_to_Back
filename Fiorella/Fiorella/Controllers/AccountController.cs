@@ -201,7 +201,6 @@ namespace Fiorella.Controllers
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
         public IActionResult ResetPassword(string token, string email)
         {
             if (!ModelState.IsValid)

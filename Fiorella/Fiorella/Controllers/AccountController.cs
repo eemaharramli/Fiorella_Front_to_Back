@@ -243,8 +243,7 @@ namespace Fiorella.Controllers
 
             return View(model);
         }
-
-
+        
         public async Task<IActionResult> VerifyEmail(string email, string token)
         {
             var user = await this._userManager.FindByEmailAsync(email);
@@ -258,6 +257,44 @@ namespace Fiorella.Controllers
             TempData["confirmed"] = true;
 
             return RedirectToAction(nameof(Index), "Home");
+        }
+        
+        //GET
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+        
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePassword model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Try again");
+                
+                return View();
+            }
+
+            var user = await this._userManager.FindByNameAsync(model.Username);
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            var result = await this._userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View();
+            }
+
+            return RedirectToAction(nameof(Login), "Account");
         }
     }
 }

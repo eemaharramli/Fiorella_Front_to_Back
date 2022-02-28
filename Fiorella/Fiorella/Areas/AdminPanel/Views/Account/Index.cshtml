@@ -1,0 +1,38 @@
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+    List<User> users = Model;
+    int count = 0;
+}
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Users List</h4>
+    <table class="table table-dark">
+      <thead>
+      <tr>
+        <th> User ID </th>
+        <th> User Fullname </th>
+        <th> User Email </th>
+        <th> Actions </th>
+      </tr>
+      </thead>
+      <tbody>
+      @foreach (var user in users)
+      {
+
+        <tr>
+          <td> @user.Id </td>
+          <td> @user.Fullname </td>
+          <td> @user.Email </td>
+          <td>
+            <a class="btn btn-primary" asp-action="ChangePassword" asp-route-id="@user.Id">Change Password</a>
+            <a class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+</div>

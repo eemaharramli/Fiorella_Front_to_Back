@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Fiorella.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
-    [Authorize(Roles = RoleConstants.AdminRole)]
     public class DashboardController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -26,7 +25,5 @@ namespace Fiorella.Areas.AdminPanel.Controllers
 
             return View(products);
         }
-        
-        
     }
 }

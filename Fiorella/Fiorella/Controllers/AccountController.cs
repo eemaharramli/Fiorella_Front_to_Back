@@ -167,9 +167,31 @@ namespace Fiorella.Controllers
                 {
                     var token = await this._userManager.GeneratePasswordResetTokenAsync(user);
                     var resetLink = Url.Action("ResetPassword", "Account", new {email = model.Email, token}, Request.Scheme);
-                    this._logger.Log(LogLevel.Warning, resetLink);
+                    
+                    
 
-                    return View("ForgotPasswordConfirmation");
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("codep320@gmail.com", "Fiorello");
+                    message.To.Add(user.Email);
+                    string body = string.Empty;
+                    using (StreamReader reader = new StreamReader("wwwroot/assets/template/changepassword.html"))
+                    {
+                        body = await reader.ReadToEndAsync();
+                    }
+
+                    message.Body = body.Replace("{{link}}", resetLink);
+                    message.Subject = "VerifyEmail";
+                    message.IsBodyHtml = true;
+
+                    SmtpClient client = new SmtpClient();
+                    client.Host = "smtp.gmail.com";
+                    client.Port = 587;
+                    client.EnableSsl = true;
+                    client.Credentials = new NetworkCredential("codep320@gmail.com", "codeacademyp320");
+                    client.Send(message);
+                    TempData["confirm"] = true;
+
+                    //return RedirectToAction(nameof(ResetPassword), "Account");
                 }
 
                 return View("ForgotPasswordConfirmation");
@@ -180,7 +202,7 @@ namespace Fiorella.Controllers
 
         [HttpGet]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ResetPassword(string token, string email)
+        public IActionResult ResetPassword(string token, string email)
         {
             if (!ModelState.IsValid)
             {
@@ -198,6 +220,7 @@ namespace Fiorella.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -209,8 +232,6 @@ namespace Fiorella.Controllers
                     if (result.Succeeded)
                     {
                         return View("ResetPasswordConfirmation");
-                        
-                        
                     }
 
                     foreach (var error in result.Errors)

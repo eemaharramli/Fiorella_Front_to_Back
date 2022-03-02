@@ -24,7 +24,7 @@ namespace Fiorella.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AccountController> _logger;
 
-    public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ILogger<AccountController> logger)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ILogger<AccountController> logger)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
@@ -123,8 +123,13 @@ namespace Fiorella.Controllers
                 return View();
             }
 
-            // var pass = await this._userManager.GeneratePasswordResetTokenAsync(existUser);
-
+            if (existUser.IsDeleted)
+            {
+                ModelState.AddModelError("", "Your user is blocked. Please contact with administrator");
+                
+                return View();
+            }
+            
             var result = await _signInManager.PasswordSignInAsync(existUser.UserName, loginModel.Password, loginModel.KeepMeSignedIn, true);
             if (result.IsLockedOut)
             {

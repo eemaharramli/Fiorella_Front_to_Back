@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Fiorella.DataAccessLayer;
 using Fiorella.Models;
 using Fiorella.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -16,11 +17,12 @@ namespace Fiorella.Areas.AdminPanel.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        
-        public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        private readonly AppDbContext _dbContext;
+        public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, AppDbContext dbContext)
         {
             this._userManager = userManager;
             this._roleManager = roleManager;
+            this._dbContext = dbContext;
         }
 
         //GET
@@ -28,6 +30,13 @@ namespace Fiorella.Areas.AdminPanel.Controllers
         public async Task<IActionResult> Index()
         {
             var users = await this._userManager.Users.ToListAsync();
+            var roles = await this._roleManager.Roles.ToListAsync();
+            var userRoles = await this._dbContext.UserRoles.ToListAsync();
+
+            if (users == null && roles == null && userRoles == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
 
             return View(users);
         }
@@ -76,38 +85,84 @@ namespace Fiorella.Areas.AdminPanel.Controllers
             return RedirectToAction(nameof(Index), "Dashboard");
         }
 
-         //POST
-         // [HttpPost]
-         // [ValidateAntiForgeryToken]
-         // public async Task<IActionResult> ChangePassword(ChangePassword model)
-         // {
-         //     if (!ModelState.IsValid)
-         //     {
-         //         ModelState.AddModelError("", "Incorrect");
-         //         return View(model);
-         //     }
-         //     
-         //     var user = await this._userManager.FindByNameAsync(model.Username);
-         //     
-         //     var password = await this._userManager.CheckPasswordAsync(user, model.OldPassword);
-         //     if (!password)
-         //     {
-         //         ModelState.AddModelError("", "Wrong inputs of old credentials");
-         //         return View();
-         //     }
-         //     
-         //     var result = await this._userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-         //     if (!result.Succeeded)
-         //     {
-         //         foreach (var error in result.Errors)
-         //         {
-         //             ModelState.AddModelError(String.Empty, error.Description);
-         //         }
-         //     
-         //         return View();
-         //     }
-         //     
-         //     return RedirectToAction(nameof(Index));
-         // }
+        // GET
+        public async Task<IActionResult> ChangeUserActivity(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            var user = await this._userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
+            
+            return View(user);
+        }
+        
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("ChangeUserActivity")]
+        public async Task<IActionResult> ChangeUserActivityStatus(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            var user = await this._userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            switch (user.IsDeleted)
+            {
+                case false:
+                    user.IsDeleted = true;
+                    break;
+                case true:
+                    user.IsDeleted = false;
+                    break;
+            }
+
+            await this._userManager.UpdateAsync(user);
+
+            return RedirectToAction(nameof(Index));
+        }
+        
+        // GET
+        public async Task<IActionResult> ChangeRole(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            var user = await this._userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            var roles = await this._userManager.GetRolesAsync(user);
+            if (roles == null)
+            {
+                return PartialView("_NotFoundPartial");
+            }
+
+            ViewBag.ActualRole = roles.FirstOrDefault();
+            
+            return View();
+        }
+        
+        // POST
+        public async Task<IActionResult> ChangeRole(string id, UserManagerViewModel userManagerViewModel) // ?
+        {
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

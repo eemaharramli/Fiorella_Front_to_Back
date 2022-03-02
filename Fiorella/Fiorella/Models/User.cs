@@ -7,5 +7,7 @@ namespace Fiorella.Models
     {
         [Required]
         public string Fullname { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

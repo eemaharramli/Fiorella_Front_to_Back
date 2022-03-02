@@ -1,9 +1,8 @@
-
+@model List<User>
 @{
     ViewBag.Title = "title";
     Layout = "_AdminLayout";
-    List<User> users = Model;
-    int count = 0;
+  int count = 0;
 }
 
 <div class="card">
@@ -15,20 +14,22 @@
         <th> User ID </th>
         <th> User Fullname </th>
         <th> User Email </th>
+        <th> User Activity Status </th>
         <th> Actions </th>
       </tr>
       </thead>
       <tbody>
-      @foreach (var user in users)
+      @foreach (var user in Model)
       {
-
         <tr>
           <td> @user.Id </td>
           <td> @user.Fullname </td>
           <td> @user.Email </td>
+          <td> @user.IsDeleted </td>
           <td>
-            <a class="btn btn-primary" asp-action="ChangePassword" asp-route-id="@user.Id">Change Password</a>
-            <a class="btn btn-danger">Delete</a>
+            <a class="btn btn-primary" asp-area="AdminPanel" asp-controller="Account" asp-action="ChangePassword" asp-route-id="@user.Id">Change Password</a>
+            <a class="btn btn-danger" asp-area="AdminPanel" asp-controller="Account" asp-action="ChangeUserActivity" asp-route-id="@user.Id">Change Activity Status</a>
+            <a class="btn btn-success" asp-area="AdminPanel" asp-controller="Account" asp-action="ChangeRole" asp-route-id="@user.Id">Change Role</a>
           </td>
         </tr>
       }
